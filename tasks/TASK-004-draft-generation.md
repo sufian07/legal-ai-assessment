@@ -19,7 +19,7 @@ Generate a Case Fact Summary in markdown from the indexed corpus.
 - Pull structured fields from `processed/*.fields.json` to seed the skeleton (parties, dates, document inventory).
 - For each section that needs narrative ("Background", "Key Facts", "Outstanding Issues"), call `retrieve()` with a section-specific query, pass the top-k chunks to Claude, generate prose with inline `[doc_id:chunk_id]` citations.
 - Append an **Evidence** section that lists every cited chunk verbatim with its source location.
-- Validate citations post-generation: every `[doc_id:chunk_id]` must resolve to a real chunk; if any don't, strip them and re-prompt the model to rewrite the affected sentence with a valid citation or hedge.
+- Validate citations post-generation: every `[doc_id:chunk_id]` must resolve to a real chunk; if any don't, strip them and re-prompt the model to rewrite the affected sentence with a valid citation or hedge. The citation format `[doc_id:chunk_id]` is canonical across README, ARCHITECTURE, prompts, and validator — no other forms accepted.
 - If retrieval returns nothing relevant for a section, the draft says "No supporting evidence found in the provided documents" instead of fabricating.
 
 ## Acceptance criteria

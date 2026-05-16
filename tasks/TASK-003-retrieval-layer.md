@@ -27,7 +27,10 @@ Stand up the retrieval layer over the processed documents.
 - [ ] `python -m app.retrieval index processed/` indexes every processed document and is idempotent (re-running doesn't duplicate chunks).
 - [ ] `retrieve("party names in the contract")` returns 8 chunks with `doc_id`, `page`, `chunk_id`, score, and the chunk text.
 - [ ] Citation IDs are stable across re-indexing of the same source (same doc + same chunk boundaries → same `chunk_id`).
-- [ ] On a 10-query manual eval set (committed under `eval/queries.json`), precision@5 is ≥ 0.7. Below that, the task isn't done — investigate chunking or add a cross-encoder re-ranker before closing.
+- [ ] Re-indexing a document evicts Chroma entries whose `chunk_id` is no longer present in the new chunk set for that `doc_id`. No orphan chunks left behind.
+- [ ] Chunks inheriting low-confidence page metadata (from TASK-001 manifests) are downranked at retrieval time by a configurable penalty (default `0.7×`).
+- [ ] Held-out 10-query eval set committed at `eval/queries.json` with a `hygiene_rule` header. Queries are not used during chunking parameter tuning or prompt iteration. Methodology in [`eval/README.md`](../eval/README.md).
+- [ ] On the held-out query set, precision@5 is ≥ 0.7. Below that, the task isn't done — investigate chunking or add a cross-encoder re-ranker before closing.
 - [ ] Inspection CLI shows scores and source snippets so retrieval quality can be debugged without running a full draft.
 
 ## Definition of Done

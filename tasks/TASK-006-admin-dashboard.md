@@ -22,7 +22,7 @@ Five views, accessible from a left sidebar:
 2. **Retrieval Playground** — text input → top-k chunks with score, doc, page, and highlighted excerpt. Lets the reviewer sanity-check grounding without running a draft.
 3. **Draft Workspace** — pick a corpus, click "Generate Draft", get the markdown back with inline citations. Edit in a Monaco-style markdown editor. "Save edits" triggers the learning loop and shows which patterns were extracted.
 4. **Learned Patterns** — table of rules in `learned_patterns.json` with type, frequency, confidence, before/after examples. Each row has a "Forget" button that calls the same logic as `app.edits forget`.
-5. **Stats** — three small charts: grounding rate per draft, retrieval P@5 over time, edit-distance reduction (v1 vs v2) across sessions. Pulls from `eval/` artifacts.
+5. **Stats** — small charts: grounding rate per draft, retrieval P@5 over time, edit-distance reduction (v1 vs v2) across sessions, **per-run token cost and end-to-end latency**. Pulls from `eval/` artifacts plus a lightweight `app/usage_log.jsonl` written by every pipeline call.
 
 Styling: custom dark theme (not stock Streamlit), legible typography, no orange error banners — all errors caught and rendered as inline warnings.
 

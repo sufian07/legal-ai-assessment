@@ -6,10 +6,14 @@ Internal workflow for Pearson Specter Litt that ingests messy legal-style docume
 
 This repository is the **planning and tracking artifact** for the take-home assessment. It contains:
 
-- `README.md` — this file (project overview, deliverables, how to read the plan)
-- `REQUIREMENTS.md` — verbatim assessment brief, the source-of-truth doc
-- `PLAN.md` — architecture, approach, scope decisions, tradeoffs
-- `tasks/` — Scrum sprint task cards, one per deliverable slice
+- [`README.md`](README.md) — this file (project overview, deliverables, how to read the plan)
+- [`REQUIREMENTS.md`](REQUIREMENTS.md) — verbatim assessment brief, the source-of-truth doc
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — concise architecture overview (required deliverable)
+- [`ASSUMPTIONS.md`](ASSUMPTIONS.md) — assumptions, tradeoffs, risks (required deliverable)
+- [`SUBMISSION_EMAIL.md`](SUBMISSION_EMAIL.md) — pre-drafted email body for `talha@ideabuilders.studio`
+- [`tasks/`](tasks/) — Scrum sprint task cards, one per deliverable slice
+- [`samples/`](samples/) — synthetic input documents + pre-computed processed outputs (review mode)
+- [`eval/`](eval/) — evaluation methodology and (post-sprint) measured results
 
 Code is added incrementally as each task in `tasks/` moves to **Done**.
 
@@ -35,7 +39,7 @@ Code is added incrementally as each task in `tasks/` moves to **Done**.
   [4] Retrieve        ── top-k passages with citation IDs
         │
         ▼
-  [5] Draft           ── Claude API, inline citations [DOC#:chunk]
+  [5] Draft           ── Claude API, inline citations [doc_id:chunk_id]
         │
         ▼
   [6] Operator edits  ── diff captured, patterns extracted
@@ -63,17 +67,17 @@ Steps 1–5 produce the baseline draft. Steps 6–7 close the improvement loop. 
 
 No single task exceeds 5 story points — anything heavier must be split before it enters the sprint.
 
-For the brief→task coverage audit, see [`tasks/README.md` § Coverage matrix](tasks/README.md#coverage-matrix--brief--task).
+For the brief→task coverage audit, see [`tasks/README.md` § Coverage matrix](tasks/README.md#coverage-matrix--brief--task--doc).
 
 ## Deliverables (per assessment brief)
 
 Required:
-- source code
-- README with setup and run instructions
-- short architecture overview (`PLAN.md`)
-- assumptions and tradeoffs writeup (`PLAN.md` § Tradeoffs)
-- sample inputs and outputs (`samples/`, `outputs/` — added during sprint)
-- evaluation approach and results (`eval/` — added during sprint)
+- source code — `app/` (produced by TASK-001 → TASK-006)
+- README with setup and run instructions — this file, finalised in TASK-007
+- short architecture overview — [`ARCHITECTURE.md`](ARCHITECTURE.md)
+- assumptions and tradeoffs writeup — [`ASSUMPTIONS.md`](ASSUMPTIONS.md)
+- sample inputs and outputs — [`samples/`](samples/) (inventory committed; files land in TASK-001/002/004/005)
+- evaluation approach and results — [`eval/README.md`](eval/README.md) (approach committed; `eval/RESULTS.md` lands in TASK-007)
 
 In-scope additions:
 - Admin dashboard (TASK-006)
@@ -88,4 +92,4 @@ Not committed in this sprint: API endpoints, Docker.
 
 ## Getting started
 
-Setup and run instructions are added to this README as TASK-001 lands and finalised in TASK-007. Until then, see `PLAN.md` for the intended runtime topology and `tasks/` for the work plan.
+Setup and run instructions are added to this README as TASK-001 lands and finalised in TASK-007. Until then, see [`ARCHITECTURE.md`](ARCHITECTURE.md) for the intended runtime topology, [`ASSUMPTIONS.md`](ASSUMPTIONS.md) for tradeoffs, and [`tasks/`](tasks/) for the work plan.

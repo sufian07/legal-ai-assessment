@@ -16,12 +16,13 @@
 
 Take the cleaned text from TASK-001 and emit a structured `fields.json` per document.
 
-Two-pass approach:
+Three-step approach:
 
-1. **Deterministic pre-pass** — regex / dateutil pulls of obvious patterns (ISO + common date formats, currency, case numbers, postal addresses). Cheap, no LLM cost, no hallucination surface.
-2. **LLM pass** — Claude prompted with the cleaned text and the pre-pass results, asked to produce the full schema. Schema-constrained output (Pydantic + retry-on-validation-fail).
+1. **Format normalize** — collapse whitespace, unify date strings to ISO-where-confident, normalize bullet markers (`•`, `-`, `*` → all `-`), strip repeated page headers/footers. Pure-Python, deterministic. Directly addresses the brief's "inconsistently formatted files" input regime.
+2. **Deterministic field pre-pass** — regex / `dateutil` pulls of obvious patterns (ISO + common date formats, currency, case numbers, postal addresses) on the normalized text. Cheap, no LLM cost, no hallucination surface.
+3. **LLM pass** — Claude (temperature 0) prompted with the normalized text and the pre-pass results, asked to produce the full schema. Schema-constrained output (Pydantic + retry-on-validation-fail).
 
-Pre-pass results are passed in so the LLM can correct them, not duplicate them.
+Pre-pass results are passed in so the LLM can correct them, not duplicate them. Determinism: every call in this stage runs at `temperature=0`.
 
 ## Acceptance criteria
 
@@ -33,7 +34,7 @@ Pre-pass results are passed in so the LLM can correct them, not duplicate them.
 
 ## Definition of Done
 
-- [ ] Code merged in `app/extract.py`.
+- [ ] Code merged in `app/extract.py` (LLM pass) and `app/normalize.py` (deterministic formatting normalization, reusable from other stages).
 - [ ] `app/schemas.py:DocumentFields` defined as a Pydantic model and imported by both extract and downstream draft stages.
 - [ ] A short prompt template lives in `app/prompts/extract.md` so it's editable without touching Python.
 - [ ] Sample `fields.json` for each of the 4 raw samples committed under `samples/processed/`.

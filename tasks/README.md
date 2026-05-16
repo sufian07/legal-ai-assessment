@@ -25,24 +25,51 @@ Scrum sprint backlog for the Legal AI assessment. One task card per deliverable 
 | TASK-007 | [Evaluation, Quality & Submission](TASK-007-evaluation-quality-submission.md) | 3 | To Do | — |
 | | **Total** | **29** | | |
 
-## Coverage matrix — brief → task
+## Coverage matrix — brief → task / doc
 
-Each rubric item maps to at least one task; this is the audit reviewers see before approving the sprint.
+Every rubric item and every required deliverable maps to at least one task or committed doc.
 
-| Brief / Rubric item | Points (rubric) | Covered by |
-|---------------------|----------------:|------------|
-| Document Processing — OCR, messy inputs, structured outputs | 25 | TASK-001, TASK-002 |
-| Retrieval & Grounding — relevance, inspectable evidence | 25 | TASK-003, TASK-004 (citation validator) |
-| Draft Quality — clarity, structure, source consistency | 10 | TASK-004 |
-| Improvement from Edits — capture, learn, apply | 25 | TASK-005 |
-| Code Quality & System Design | 10 | All tasks (DoD); final pass in TASK-007 |
-| Documentation & Clarity | 5 | All tasks (DoD); polish in TASK-007 |
-| Sample inputs / outputs (required deliverable) | — | TASK-001, TASK-002, TASK-004, TASK-005 |
-| Evaluation approach & results (required deliverable) | — | TASK-003, TASK-005, consolidated in TASK-007 |
-| Admin UI to assist the operator (in-scope addition) | — | TASK-006 |
-| Submission ceremony (collaborator invites, email) | — | TASK-007 |
+### Rubric items
 
-No rubric item is uncovered.
+| Rubric item | Points | Covered by |
+|-------------|-------:|------------|
+| Document Processing | 25 | TASK-001 (ingest + TrOCR handwriting route), TASK-002 (normalize + structured extraction) |
+| Retrieval & Grounding | 25 | TASK-003 (confidence-aware ranking, stale-chunk eviction, hygiene), TASK-004 (citation validator) |
+| Draft Quality | 10 | TASK-004 |
+| Improvement from Edits | 25 | TASK-005 (schema-versioned pattern store, frequency-gated promotion) |
+| Code Quality & System Design | 10 | All tasks' DoD; final pass in TASK-007 (lint, typecheck, structured logging, scalability documented in ARCHITECTURE.md) |
+| Documentation & Clarity | 5 | All tasks' DoD; reviewer-experience polish in TASK-007 |
+
+### Required submission deliverables (per `REQUIREMENTS.md`)
+
+| Deliverable | Where it lives |
+|-------------|----------------|
+| Source code | `app/` — produced by TASK-001 → TASK-006 |
+| README with setup & run instructions | [`../README.md`](../README.md) — finalised in TASK-007 |
+| Short architecture overview | [`../ARCHITECTURE.md`](../ARCHITECTURE.md) ✓ committed |
+| Assumptions & tradeoffs writeup | [`../ASSUMPTIONS.md`](../ASSUMPTIONS.md) ✓ committed |
+| Sample inputs & outputs | [`../samples/`](../samples/) inventory ✓ committed; files land in TASK-001/002/004/005 |
+| Evaluation approach | [`../eval/README.md`](../eval/README.md) ✓ committed |
+| Evaluation results | `../eval/RESULTS.md` — lands in TASK-007 |
+
+### Optional deliverables
+
+| Deliverable | Status |
+|-------------|--------|
+| API endpoints | Out of scope (PLAN deliberately omits — see ASSUMPTIONS) |
+| Simple UI | **In scope as Admin Dashboard** — TASK-006 |
+| Tests | Minimum set in TASK-007 DoD |
+| Docker | Out of scope |
+
+### Submission ceremony
+
+| Item | Where |
+|------|-------|
+| GitHub repo (public) | `https://github.com/sufian07/legal-ai-assessment` ✓ live |
+| Invite `tsensei`, `abubakarsiddik31` | TASK-007 |
+| Email `talha@ideabuilders.studio` | [`../SUBMISSION_EMAIL.md`](../SUBMISSION_EMAIL.md) ✓ drafted |
+
+No rubric item is uncovered. No required deliverable is missing.
 
 ## Card format
 

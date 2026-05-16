@@ -17,8 +17,8 @@
 Close the loop. This is the highest-value task in the sprint and the part the rubric weights most heavily (25 pts).
 
 1. **Capture** — operator saves their edited markdown next to the baseline as `outputs/draft_vN_edited.md`. `python -m app.edits capture <vN>` produces a unified diff and stores it under `edits/`.
-2. **Classify** — the diff is sent to Claude with a classifier prompt that labels each hunk as one of: `terminology | structure | tone | citation_style | content_emphasis | omission`. Output is structured JSON per hunk: `{type, before, after, suggested_rule}`.
-3. **Store** — patterns accumulate in `app/learned_patterns.json` keyed by `{type, rule}`. Repeats increment a `frequency` counter. Confidence promotes: ≥1 occurrence = `low`, ≥2 = `medium`, ≥3 = `high`.
+2. **Classify** — the diff is sent to Claude (temperature 0) with a classifier prompt that labels each hunk as one of: `terminology | structure | tone | citation_style | content_emphasis | omission`. Output is structured JSON per hunk: `{type, before, after, suggested_rule}`.
+3. **Store** — patterns accumulate in `app/learned_patterns.json` with a top-level `schema_version` field, keyed by `{type, rule}`. Repeats increment a `frequency` counter. Confidence promotes: ≥1 occurrence = `low`, ≥2 = `medium`, ≥3 = `high`. Schema bumps trigger a migration shim that drops incompatible entries with a logged warning rather than crashing.
 4. **Apply** — next draft generation reads `learned_patterns.json`:
    - **high-confidence** patterns become explicit rules at the top of the system prompt,
    - **medium-confidence** patterns are injected as 2–3 before/after few-shot pairs,

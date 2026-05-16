@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "hygiene_rule": "HELD-OUT EVAL SET. These queries must NOT be used during chunking parameter tuning, prompt iteration, or any other dev-time decision. Iterate against scratch queries; only run these via eval/retrieval.py. Inflating P@5 by tuning on the eval set is the single most common eval failure — don't be that engineer.",
+  "queries": [
+    {
+      "id": "Q01",
+      "text": "Who are the parties to the agreement?",
+      "expected_doc_ids": ["01_case_brief_clean"],
+      "notes": "Should retrieve a chunk listing the named parties, typically on page 1."
+    },
+    {
+      "id": "Q02",
+      "text": "What is the effective date of the title transfer?",
+      "expected_doc_ids": ["02_title_search_scanned", "03_property_deed"],
+      "notes": "Date may appear in multiple docs; relevant chunks should mention 'effective date' or 'as of'."
+    },
+    {
+      "id": "Q03",
+      "text": "List all monetary amounts and their context.",
+      "expected_doc_ids": ["01_case_brief_clean", "02_title_search_scanned"],
+      "notes": "Should surface currency-bearing chunks with surrounding sentence context."
+    },
+    {
+      "id": "Q04",
+      "text": "Are there any outstanding obligations on the property?",
+      "expected_doc_ids": ["03_property_deed"],
+      "notes": "Encumbrances, liens, or open claims."
+    },
+    {
+      "id": "Q05",
+      "text": "What notice was served and when?",
+      "expected_doc_ids": ["04_handwritten_notice"],
+      "notes": "Handwriting source — tests retrieval over TrOCR-extracted text."
+    },
+    {
+      "id": "Q06",
+      "text": "Summarize the chain of title.",
+      "expected_doc_ids": ["02_title_search_scanned"],
+      "notes": "Sequence of ownership transfers; chunks may span pages."
+    },
+    {
+      "id": "Q07",
+      "text": "Identify any conflicts between documents.",
+      "expected_doc_ids": ["02_title_search_scanned", "03_property_deed"],
+      "notes": "Cross-document retrieval; the system should return chunks from each disagreeing source."
+    },
+    {
+      "id": "Q08",
+      "text": "What case number is referenced?",
+      "expected_doc_ids": ["01_case_brief_clean"],
+      "notes": "Tests extraction-driven retrieval; case number is a known structured field."
+    },
+    {
+      "id": "Q09",
+      "text": "What is the address of the property?",
+      "expected_doc_ids": ["03_property_deed", "02_title_search_scanned"],
+      "notes": "Address normalization across formats."
+    },
+    {
+      "id": "Q10",
+      "text": "Are there illegible or unclear sections in any document?",
+      "expected_doc_ids": ["04_handwritten_notice"],
+      "notes": "Should surface chunks from pages flagged as low-confidence in their manifest."
+    }
+  ]
+}
