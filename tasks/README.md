@@ -16,6 +16,7 @@ Scrum sprint backlog for the Legal AI assessment. One task card per deliverable 
 
 | ID | Title | Points | Status | Owner |
 |----|-------|-------:|--------|-------|
+| TASK-000 | [Project Setup & Scaffolding](TASK-000-project-setup.md) | 3 | To Do | — |
 | TASK-001 | [Document Ingestion](TASK-001-document-ingestion.md) | 5 | To Do | — |
 | TASK-002 | [Structured Extraction](TASK-002-structured-extraction.md) | 3 | To Do | — |
 | TASK-003 | [Retrieval Layer](TASK-003-retrieval-layer.md) | 5 | To Do | — |
@@ -23,7 +24,7 @@ Scrum sprint backlog for the Legal AI assessment. One task card per deliverable 
 | TASK-005 | [Edit-Learning Loop](TASK-005-edit-learning-loop.md) | 5 | To Do | — |
 | TASK-006 | [Admin Dashboard](TASK-006-admin-dashboard.md) | 5 | To Do | — |
 | TASK-007 | [Evaluation, Quality & Submission](TASK-007-evaluation-quality-submission.md) | 3 | To Do | — |
-| | **Total** | **29** | | |
+| | **Total** | **32** | | |
 
 ## Coverage matrix — brief → task / doc
 
@@ -37,7 +38,7 @@ Every rubric item and every required deliverable maps to at least one task or co
 | Retrieval & Grounding | 25 | TASK-003 (confidence-aware ranking, stale-chunk eviction, hygiene), TASK-004 (citation validator) |
 | Draft Quality | 10 | TASK-004 |
 | Improvement from Edits | 25 | TASK-005 (schema-versioned pattern store, frequency-gated promotion) |
-| Code Quality & System Design | 10 | All tasks' DoD; final pass in TASK-007 (lint, typecheck, structured logging, scalability documented in ARCHITECTURE.md) |
+| Code Quality & System Design | 10 | **TASK-000 (project scaffold, tooling configs, structured logging)**; all tasks' DoD; final pass in TASK-007 (lint, typecheck, scalability documented in ARCHITECTURE.md) |
 | Documentation & Clarity | 5 | All tasks' DoD; reviewer-experience polish in TASK-007 |
 
 ### Required submission deliverables (per `REQUIREMENTS.md`)

@@ -6,7 +6,7 @@
 | **Sprint** | Sprint 1 |
 | **Status** | To Do |
 | **Owner** | — |
-| **Depends on** | — |
+| **Depends on** | TASK-000 |
 
 ## User story
 

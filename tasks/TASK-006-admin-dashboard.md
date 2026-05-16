@@ -6,7 +6,7 @@
 | **Sprint** | Sprint 1 |
 | **Status** | To Do |
 | **Owner** | — |
-| **Depends on** | TASK-001, TASK-002, TASK-003, TASK-004, TASK-005 |
+| **Depends on** | TASK-000, TASK-001, TASK-002, TASK-003, TASK-004, TASK-005 |
 
 ## User story
 
@@ -24,7 +24,21 @@ Five views, accessible from a left sidebar:
 4. **Learned Patterns** — table of rules in `learned_patterns.json` with type, frequency, confidence, before/after examples. Each row has a "Forget" button that calls the same logic as `app.edits forget`.
 5. **Stats** — small charts: grounding rate per draft, retrieval P@5 over time, edit-distance reduction (v1 vs v2) across sessions, **per-run token cost and end-to-end latency**. Pulls from `eval/` artifacts plus a lightweight `app/usage_log.jsonl` written by every pipeline call.
 
-Styling: custom dark theme (not stock Streamlit), legible typography, no orange error banners — all errors caught and rendered as inline warnings.
+## Visual design
+
+A genuinely polished dashboard, not stock Streamlit. Every bullet below is testable.
+
+- **Color palette** — dark navy base (`#0B1220`), accent blue (`#3B82F6`), warning amber (`#F59E0B`), success green (`#10B981`), text on a Slate gray scale. Defined once in `.streamlit/config.toml` and `app/dashboard_theme.py` so charts and custom components share it.
+- **Typography** — Inter for UI, JetBrains Mono for code, citations, and chunk IDs. Loaded via Google Fonts.
+- **Layout** — persistent left sidebar with active-view highlight, breadcrumb in the main content area, sticky action bar in Draft Workspace (Generate / Save Edits / Clear).
+- **Charts** — Plotly throughout, themed to the palette via `app/dashboard_theme.py:PLOTLY_TEMPLATE`. Zero stock Plotly defaults.
+- **Documents view** — tile/card layout (via `streamlit-extras` `card` or hand-rolled HTML), not a stock dataframe. Each card surfaces: doc name, ingest engine, confidence sparkline, click-to-expand manifest.
+- **Draft Workspace** — three-pane layout. Left: markdown editor (`streamlit-ace`). Middle: live citation-resolved preview. Right: **Source** panel that highlights the cited chunk when an inline `[doc_id:chunk_id]` is clicked in the preview.
+- **Empty states** — every view renders a friendly empty state when there's no data, with a one-line next action ("Drop a PDF in `samples/raw/` and run `python -m app.ingest`").
+- **Loading states** — `st.empty()` skeletons during ingest, embed, generate, learn. The UI never freezes.
+- **Toast notifications** — `streamlit-extras` toasts for Save, Learn, Forget events. No alert dialogs.
+- **Branding** — Pearson Specter Litt text-based logo placeholder in the sidebar header (we don't have rights to firm assets). Favicon set.
+- **Error UX** — no orange Streamlit error banners. Every exception caught and rendered as an `st.error` card with cause + suggested fix.
 
 ## Acceptance criteria
 
@@ -33,14 +47,21 @@ Styling: custom dark theme (not stock Streamlit), legible typography, no orange 
 - [ ] Generating a draft from the dashboard produces the same output as `python -m app.draft` (same prompts, same model, same result for identical input).
 - [ ] Editing a draft in the workspace and clicking "Save edits" produces a diff that appears in TASK-005's learning store; the **Learned Patterns** view refreshes to show the new patterns within one page reload.
 - [ ] "Forget" on a pattern row removes it from `learned_patterns.json`.
-- [ ] Custom theme is applied via `.streamlit/config.toml` — no default Streamlit blue.
+- [ ] Custom theme is applied via `.streamlit/config.toml` AND `app/dashboard_theme.py` — palette hex codes match the Visual Design spec; no default Streamlit blue anywhere.
+- [ ] Plotly chart theme matches the palette via `PLOTLY_TEMPLATE` — no stock Plotly defaults.
+- [ ] Documents view uses a tile/card layout, not a stock dataframe.
+- [ ] Draft Workspace renders the three-pane layout (editor | preview | source). Clicking an inline citation in the preview highlights the source chunk in the right panel.
+- [ ] Empty states render in all five views when there's no data, each with a one-line next-action hint.
+- [ ] Five screenshots committed under `docs/screenshots/` (one per view) and linked from the README.
 - [ ] Every long-running action (ingest, embed, generate, learn) shows a spinner and never freezes the UI.
 
 ## Definition of Done
 
 - [ ] Code merged in `app/dashboard.py` (entrypoint) and `app/dashboard_views/` (one module per view).
 - [ ] `.streamlit/config.toml` committed with the custom theme.
-- [ ] `requirements.txt` includes `streamlit`, `plotly`, and the markdown editor component.
+- [ ] `requirements.txt` includes `streamlit`, `streamlit-extras`, `streamlit-ace`, `plotly`, and the markdown preview library.
+- [ ] `app/dashboard_theme.py` defines the shared color palette + Plotly template, imported by every view module.
+- [ ] Five screenshots committed: `docs/screenshots/documents.png`, `retrieval.png`, `draft.png`, `patterns.png`, `stats.png`.
 - [ ] README has a "Run the dashboard" section with screenshots committed under `docs/screenshots/`.
 - [ ] Smoke test: scripted launch + screenshot via `playwright` lives under `tests/test_dashboard_smoke.py` (skipped in CI but documented in the test file).
 

@@ -6,7 +6,8 @@ Internal workflow for Pearson Specter Litt that ingests messy legal-style docume
 
 This repository is the **planning and tracking artifact** for the take-home assessment. It contains:
 
-- [`README.md`](README.md) — this file (project overview, deliverables, how to read the plan)
+- [`README.md`](README.md) — this file (project overview, deliverables)
+- [`REVIEWER_GUIDE.md`](REVIEWER_GUIDE.md) — **start here if you only have 60 seconds**
 - [`REQUIREMENTS.md`](REQUIREMENTS.md) — verbatim assessment brief, the source-of-truth doc
 - [`ARCHITECTURE.md`](ARCHITECTURE.md) — concise architecture overview (required deliverable)
 - [`ASSUMPTIONS.md`](ASSUMPTIONS.md) — assumptions, tradeoffs, risks (required deliverable)
@@ -56,6 +57,7 @@ Steps 1–5 produce the baseline draft. Steps 6–7 close the improvement loop. 
 
 | Task | Points | Status |
 |------|-------:|--------|
+| [TASK-000 Project Setup & Scaffolding](tasks/TASK-000-project-setup.md) | 3 | To Do |
 | [TASK-001 Document Ingestion](tasks/TASK-001-document-ingestion.md) | 5 | To Do |
 | [TASK-002 Structured Extraction](tasks/TASK-002-structured-extraction.md) | 3 | To Do |
 | [TASK-003 Retrieval Layer](tasks/TASK-003-retrieval-layer.md) | 5 | To Do |
@@ -63,7 +65,7 @@ Steps 1–5 produce the baseline draft. Steps 6–7 close the improvement loop. 
 | [TASK-005 Edit-Learning Loop](tasks/TASK-005-edit-learning-loop.md) | 5 | To Do |
 | [TASK-006 Admin Dashboard](tasks/TASK-006-admin-dashboard.md) | 5 | To Do |
 | [TASK-007 Evaluation, Quality & Submission](tasks/TASK-007-evaluation-quality-submission.md) | 3 | To Do |
-| **Sprint total** | **29** | |
+| **Sprint total** | **32** | |
 
 No single task exceeds 5 story points — anything heavier must be split before it enters the sprint.
 
