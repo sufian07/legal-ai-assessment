@@ -57,7 +57,7 @@ Steps 1–5 produce the baseline draft. Steps 6–7 close the improvement loop. 
 
 | Task | Points | Status |
 |------|-------:|--------|
-| [TASK-000 Project Setup & Scaffolding](tasks/TASK-000-project-setup.md) | 3 | To Do |
+| [TASK-000 Project Setup & Scaffolding](tasks/TASK-000-project-setup.md) | 3 | **Done** |
 | [TASK-001 Document Ingestion](tasks/TASK-001-document-ingestion.md) | 5 | To Do |
 | [TASK-002 Structured Extraction](tasks/TASK-002-structured-extraction.md) | 3 | To Do |
 | [TASK-003 Retrieval Layer](tasks/TASK-003-retrieval-layer.md) | 5 | To Do |
@@ -92,6 +92,59 @@ Not committed in this sprint: API endpoints, Docker.
 - Collaborators invited: `tsensei`, `abubakarsiddik31`
 - Email to `talha@ideabuilders.studio` with repo link
 
-## Getting started
+## Setup
 
-Setup and run instructions are added to this README as TASK-001 lands and finalised in TASK-007. Until then, see [`ARCHITECTURE.md`](ARCHITECTURE.md) for the intended runtime topology, [`ASSUMPTIONS.md`](ASSUMPTIONS.md) for tradeoffs, and [`tasks/`](tasks/) for the work plan.
+### Prerequisites
+
+- Python 3.11+
+- *(For OCR on scanned PDFs)* **Tesseract OCR** — [Windows installer](https://github.com/UB-Mannheim/tesseract/wiki) · macOS: `brew install tesseract`
+- *(For scanned PDFs)* **Poppler** — Windows: [poppler-windows releases](https://github.com/oschwartz10612/poppler-windows/releases), add `bin/` to PATH · macOS: `brew install poppler`
+- *(For handwriting)* **TrOCR weights** download automatically on first ingest (~330 MB, cached under `.models/`).
+
+### Install
+
+```bash
+git clone https://github.com/sufian07/legal-ai-assessment
+cd legal-ai-assessment
+make install
+cp .env.example .env   # fill in ANTHROPIC_API_KEY (optional — see review mode below)
+```
+
+**Windows without `make`** — Git Bash or GNU Make on PATH is the easy path. If you don't have either, run:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+pip install -e .
+copy .env.example .env
+```
+
+### Verify
+
+```bash
+make lint        # ruff check app/
+make typecheck   # mypy app/
+make test        # pytest
+```
+
+### Run
+
+```bash
+make dashboard   # launches Streamlit on http://localhost:8501
+```
+
+Or via CLI:
+
+```bash
+python -m app.ingest samples/raw/
+python -m app.extract samples/processed/
+python -m app.retrieval index samples/processed/
+python -m app.draft default --out outputs/draft_v1.md
+```
+
+### Review mode — no API key required
+
+The repo ships pre-computed `samples/processed/` and `outputs/` artifacts. The dashboard renders them without calling any LLM. See [`REVIEWER_GUIDE.md`](REVIEWER_GUIDE.md) for the no-key walkthrough.

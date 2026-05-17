@@ -1,13 +1,39 @@
 __pycache__/
 *.pyc
+*.pyo
+
+# Virtualenvs
 .venv/
 venv/
+
+# Environment
 .env
 .env.local
+
+# Data stores
 .chroma/
-processed/
+
+# TrOCR weights cache
+.models/
+
+# Usage telemetry (rebuilt per session)
+usage_log.jsonl
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Transient outputs
 outputs/*.tmp
 edits/*.tmp
+
+# OS / editor
 .DS_Store
 Thumbs.db
 .idea/

@@ -1,0 +1,8 @@
+# Dev tooling: lint, typecheck, test.
+# Install runtime deps first via requirements.txt.
+
+ruff==0.7.4
+mypy==1.13.0
+pytest==8.3.3
+pytest-cov==5.0.0
+types-python-dateutil==2.9.0.20241003

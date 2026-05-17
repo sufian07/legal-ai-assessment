@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legal-ai-assessment"
+version = "0.1.0"
+description = "Internal workflow for ingesting messy legal documents, retrieving grounded evidence, generating cited drafts, and learning from operator edits."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "sufian07" }]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Legal Industry",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/sufian07/legal-ai-assessment"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["tests*", "scripts*"]
