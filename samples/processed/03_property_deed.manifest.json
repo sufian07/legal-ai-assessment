@@ -1,0 +1,21 @@
+{
+  "doc_id": "03_property_deed",
+  "source_path": "samples/raw/03_property_deed.png",
+  "source_type": "image",
+  "ingested_at": "2026-05-17T10:50:01Z",
+  "pages": [
+    {
+      "page": 1,
+      "text_length": 851,
+      "confidence": 0.89,
+      "ocr_engine": "tesseract",
+      "ocr_attempts": [
+        "tesseract"
+      ],
+      "flagged": false,
+      "flag_reason": null
+    }
+  ],
+  "overall_confidence": 0.89,
+  "warnings": []
+}

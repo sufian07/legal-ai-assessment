@@ -1,0 +1,21 @@
+{
+  "doc_id": "01_case_brief_clean",
+  "source_path": "samples\\raw\\01_case_brief_clean.pdf",
+  "source_type": "pdf",
+  "ingested_at": "2026-05-17T10:51:59.228062Z",
+  "pages": [
+    {
+      "page": 1,
+      "text_length": 1049,
+      "confidence": 0.95,
+      "ocr_engine": "pdfplumber",
+      "ocr_attempts": [
+        "pdfplumber"
+      ],
+      "flagged": false,
+      "flag_reason": null
+    }
+  ],
+  "overall_confidence": 0.95,
+  "warnings": []
+}

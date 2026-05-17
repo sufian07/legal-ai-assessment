@@ -58,7 +58,7 @@ Steps 1–5 produce the baseline draft. Steps 6–7 close the improvement loop. 
 | Task | Points | Status |
 |------|-------:|--------|
 | [TASK-000 Project Setup & Scaffolding](tasks/TASK-000-project-setup.md) | 3 | **Done** |
-| [TASK-001 Document Ingestion](tasks/TASK-001-document-ingestion.md) | 5 | To Do |
+| [TASK-001 Document Ingestion](tasks/TASK-001-document-ingestion.md) | 5 | **Done** |
 | [TASK-002 Structured Extraction](tasks/TASK-002-structured-extraction.md) | 3 | To Do |
 | [TASK-003 Retrieval Layer](tasks/TASK-003-retrieval-layer.md) | 5 | To Do |
 | [TASK-004 Draft Generation](tasks/TASK-004-draft-generation.md) | 3 | To Do |

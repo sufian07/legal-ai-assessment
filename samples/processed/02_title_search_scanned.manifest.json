@@ -1,0 +1,24 @@
+{
+  "doc_id": "02_title_search_scanned",
+  "source_path": "samples/raw/02_title_search_scanned.pdf",
+  "source_type": "pdf",
+  "ingested_at": "2026-05-17T10:50:00Z",
+  "pages": [
+    {
+      "page": 1,
+      "text_length": 989,
+      "confidence": 0.87,
+      "ocr_engine": "tesseract",
+      "ocr_attempts": [
+        "pdfplumber",
+        "tesseract"
+      ],
+      "flagged": false,
+      "flag_reason": null
+    }
+  ],
+  "overall_confidence": 0.87,
+  "warnings": [
+    "page 1: pdfplumber returned no text; fell back to Tesseract via pdf2image."
+  ]
+}

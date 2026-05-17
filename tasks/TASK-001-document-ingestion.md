@@ -4,7 +4,7 @@
 |-------|-------|
 | **Story points** | 5 |
 | **Sprint** | Sprint 1 |
-| **Status** | To Do |
+| **Status** | Done |
 | **Owner** | — |
 | **Depends on** | TASK-000 |
 

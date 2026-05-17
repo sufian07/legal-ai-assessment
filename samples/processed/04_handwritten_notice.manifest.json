@@ -1,0 +1,25 @@
+{
+  "doc_id": "04_handwritten_notice",
+  "source_path": "samples/raw/04_handwritten_notice.png",
+  "source_type": "image",
+  "ingested_at": "2026-05-17T10:50:02Z",
+  "pages": [
+    {
+      "page": 1,
+      "text_length": 372,
+      "confidence": 0.55,
+      "ocr_engine": "trocr",
+      "ocr_attempts": [
+        "tesseract",
+        "trocr"
+      ],
+      "flagged": true,
+      "flag_reason": "low confidence 0.55 (floor 0.60)"
+    }
+  ],
+  "overall_confidence": 0.55,
+  "warnings": [
+    "page 1: Tesseract average confidence 0.34 below floor; routed to TrOCR (microsoft/trocr-base-handwritten).",
+    "page 1: smudged region around y=580-670px produced low-confidence tokens; retrieval should downweight via low_confidence_penalty."
+  ]
+}

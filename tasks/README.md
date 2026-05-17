@@ -17,7 +17,7 @@ Scrum sprint backlog for the Legal AI assessment. One task card per deliverable 
 | ID | Title | Points | Status | Owner |
 |----|-------|-------:|--------|-------|
 | TASK-000 | [Project Setup & Scaffolding](TASK-000-project-setup.md) | 3 | Done | sufian07 |
-| TASK-001 | [Document Ingestion](TASK-001-document-ingestion.md) | 5 | To Do | — |
+| TASK-001 | [Document Ingestion](TASK-001-document-ingestion.md) | 5 | Done | sufian07 |
 | TASK-002 | [Structured Extraction](TASK-002-structured-extraction.md) | 3 | To Do | — |
 | TASK-003 | [Retrieval Layer](TASK-003-retrieval-layer.md) | 5 | To Do | — |
 | TASK-004 | [Draft Generation](TASK-004-draft-generation.md) | 3 | To Do | — |
